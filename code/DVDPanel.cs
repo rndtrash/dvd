@@ -83,12 +83,8 @@ namespace DVD
 		public DVDPanel()
 		{
 			random = new Random();
-			var angle = (double)random.Next( 40, 90 - 40 ) / 180 * Math.PI;
 
-			xAcc = (float)Math.Cos( angle );
-			yAcc = (float)Math.Sin( angle );
-			speed = random.Next( 50, 100 );
-			SetCornerOfInterest();
+			RandomiseParams();
 
 			AddChild( out tp );
 		}
@@ -125,9 +121,7 @@ namespace DVD
 				}
 				hyped = false;
 
-				SetCornerOfInterest();
-
-				speed = random.Next( 50, 100 );
+				RandomiseParams();
 			}
 
 			Style.Left = Length.Pixels( x );
@@ -153,6 +147,16 @@ namespace DVD
 		{
 			if ( Local.Pawn != null )
 				Local.Pawn.PlaySound( s.Name );
+		}
+
+		private void RandomiseParams()
+		{
+			var angle = (double)random.Next( 40, 90 - 40 ) / 180 * Math.PI;
+
+			xAcc = (float)Math.Cos( angle );
+			yAcc = (float)Math.Sin( angle );
+			speed = random.Next( 50, 100 );
+			SetCornerOfInterest();
 		}
 	}
 }

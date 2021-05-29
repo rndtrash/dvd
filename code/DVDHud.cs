@@ -22,6 +22,7 @@ namespace DVD
 
 				RootPanel.AddChild<DVDPanel>(out dvdp);
 				RootPanel.AddChild<ChatBox>();
+				RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
 			}
 		}
 	}
