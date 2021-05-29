@@ -1,3 +1,6 @@
-
-minimal/code/minimal.csproj
-minimal/code/accesslist.txt
+code/obj
+code/Properties
+code/dvd.csproj
+code/accesslist.txt
+.intermediate/
+tools*.bin

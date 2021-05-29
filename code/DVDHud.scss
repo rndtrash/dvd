@@ -1,0 +1,36 @@
+RootPanel {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    pointer-events: all;
+}
+
+DVDPanel {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+    background-image: url(ui/dvd.png);
+    background-repeat: no-repeat;
+    background-size: 510px 305px;
+    width: 509px;
+    height: 304px;
+
+    margin: 0;
+    padding: 0;
+}
+
+DVDTintPanel {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #be00ff;
+    mix-blend-mode: multiply;
+    width: 509px;
+    height: 304px;
+}

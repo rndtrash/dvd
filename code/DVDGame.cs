@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 //
 // You don't need to put things in a namespace, but it doesn't hurt.
 //
-namespace MinimalExample
+namespace DVD
 {
 
 	/// <summary>
@@ -22,9 +22,9 @@ namespace MinimalExample
 	/// as your game addon. If it isn't then we won't be able to find it.
 	/// </summary>
 	[Library( "dvd" )]
-	public partial class MinimalGame : Sandbox.Game
+	public partial class DVDGame : Sandbox.Game
 	{
-		public MinimalGame()
+		public DVDGame()
 		{
 			if ( IsServer )
 			{
@@ -34,7 +34,7 @@ namespace MinimalExample
 				// and when it is created clientside it creates the actual
 				// UI panels. You don't have to create your HUD via an entity,
 				// this just feels like a nice neat way to do it.
-				new MinimalHudEntity();
+				new DVDHudEntity();
 			}
 
 			if ( IsClient )
@@ -50,10 +50,15 @@ namespace MinimalExample
 		{
 			base.ClientJoined( client );
 
-			var player = new MinimalPlayer();
+			var player = new DVDPlayer();
 			client.Pawn = player;
 
 			player.Respawn();
+		}
+
+		public override void Simulate( Client cl )
+		{
+			base.Simulate( cl );
 		}
 	}
 
