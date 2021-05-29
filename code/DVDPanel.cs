@@ -88,6 +88,7 @@ namespace DVD
 			xAcc = (float)Math.Cos( angle );
 			yAcc = (float)Math.Sin( angle );
 			speed = random.Next( 50, 100 );
+			SetCornerOfInterest();
 
 			AddChild( out tp );
 		}
