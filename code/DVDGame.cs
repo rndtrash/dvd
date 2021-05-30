@@ -1,9 +1,5 @@
 ﻿
 using Sandbox;
-using Sandbox.UI.Construct;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 //
 // You don't need to put things in a namespace, but it doesn't hurt.
@@ -30,6 +26,7 @@ namespace DVD
 			{
 				Log.Info( "My Gamemode Has Created Serverside!" );
 
+				new DVDEntity();
 				// Create a HUD entity. This entity is globally networked
 				// and when it is created clientside it creates the actual
 				// UI panels. You don't have to create your HUD via an entity,

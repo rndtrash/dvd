@@ -1,4 +1,6 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
+using System.Linq;
 
 //
 // You don't need to put things in a namespace, but it doesn't hurt.
@@ -13,6 +15,16 @@ namespace DVD
 	{
 		public DVDPanel dvdp;
 
+		private DVDEntity dvde;
+
+		[Net]
+		private float xLocal { get; set; }
+		[Net]
+		private float yLocal { get; set; }
+		[Net]
+		private int colorLocal { get; set; }
+
+
 		public DVDHudEntity()
 		{
 			if ( IsClient )
@@ -20,9 +32,32 @@ namespace DVD
 				//RootPanel.SetTemplate( "/minimalhud.html" );
 				RootPanel.StyleSheet.Load( "/DVDHud.scss" );
 
-				RootPanel.AddChild<DVDPanel>(out dvdp);
+				RootPanel.AddChild<DVDPanel>( out dvdp );
 				RootPanel.AddChild<ChatBox>();
 				RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
+			}
+			else
+			{
+				dvde = Entity.All.OfType<DVDEntity>().First();
+				if ( dvde == null )
+					throw new System.Exception( "fuck" );
+			}
+		}
+
+		[Event.Tick]
+		public void Tick()
+		{
+			if ( IsClient )
+			{
+				dvdp.x = MathX.LerpTo( dvdp.x, xLocal, .75f );
+				dvdp.y = MathX.LerpTo( dvdp.y, yLocal, .75f );
+				dvdp.currentColor = colorLocal;
+			}
+			else
+			{
+				xLocal = dvde.xConverted;
+				yLocal = dvde.yConverted;
+				colorLocal = dvde.currentColor;
 			}
 		}
 	}
