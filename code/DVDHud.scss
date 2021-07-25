@@ -11,16 +11,24 @@ RootPanel {
     pointer-events: all;
 }
 
+.dvdcont
+{
+    background-color: rgba(0,0,0,0);
+    width: 100%;
+    margin-right: 510px;
+    margin-bottom: 305px;
+}
+
 DVDPanel {
+    transition: left 0.01s ease-in, top 0.01s ease-in;
     position: absolute;
-    left: 100px;
-    top: 100px;
+    left: 0px;
+    top: 0px;
     background-image: url(ui/dvd.png);
     background-repeat: no-repeat;
     background-size: 510px 305px;
     width: 510px;
     height: 305px;
-
     margin: 0;
     padding: 0;
 }

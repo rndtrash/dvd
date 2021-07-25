@@ -1,7 +1,5 @@
-﻿using Sandbox;
-using Sandbox.UI;
+﻿using Sandbox.UI;
 using System;
-using System.Collections.Generic;
 
 namespace DVD
 {
@@ -34,7 +32,7 @@ namespace DVD
 				return Color.FromBytes(
 					Convert.ToInt32( hex.Substring( 0, 2 ), 16 ),
 					Convert.ToInt32( hex.Substring( 2, 2 ), 16 ),
-					Convert.ToInt32( hex.Substring( 4, 2 ), 16 ));
+					Convert.ToInt32( hex.Substring( 4, 2 ), 16 ) );
 			}
 		}
 
@@ -51,8 +49,8 @@ namespace DVD
 
 		public override void Tick()
 		{
-			Style.Left = Length.Pixels( x * (Screen.Width - 510) );
-			Style.Top = Length.Pixels( y * (Screen.Height - 305) );
+			Style.Left = Length.Percent( x * 100 );
+			Style.Top = Length.Percent( y * 100 );
 			Style.Dirty();
 			tp.SetColor( currentColor );
 		}

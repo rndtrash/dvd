@@ -31,14 +31,15 @@ namespace DVD
 			{
 				//RootPanel.SetTemplate( "/minimalhud.html" );
 				RootPanel.StyleSheet.Load( "/DVDHud.scss" );
+				var p = RootPanel.Add.Panel( "dvdcont" );
+				p.AddChild( out dvdp );
 
-				RootPanel.AddChild<DVDPanel>( out dvdp );
 				RootPanel.AddChild<ChatBox>();
 				RootPanel.AddChild<Scoreboard<ScoreboardEntry>>();
 			}
 			else
 			{
-				dvde = Entity.All.OfType<DVDEntity>().First();
+				dvde = All.OfType<DVDEntity>().First();
 				if ( dvde == null )
 					throw new System.Exception( "fuck" );
 			}
@@ -49,8 +50,8 @@ namespace DVD
 		{
 			if ( IsClient )
 			{
-				dvdp.x = MathX.LerpTo( dvdp.x, xLocal, .75f );
-				dvdp.y = MathX.LerpTo( dvdp.y, yLocal, .75f );
+				dvdp.x = xLocal;
+				dvdp.y = yLocal;
 				dvdp.currentColor = colorLocal;
 			}
 			else

@@ -1,18 +1,4 @@
 {
-		"name": "dvd",
-		"sharedassets": "*.*",
-		
-		"depends": 
-		[
-			"base"
-		],
-
-		"gamemodes":
-		[
-			{
-				"name": "dvd",
-				"title": "DVD",
-				"description": "DVD"
-			}
-		]
+	"sharedassets": "*.*",
+	"ident": "tesa.dvd"
 }

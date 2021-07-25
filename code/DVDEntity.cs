@@ -86,7 +86,7 @@ namespace DVD
 
 		private void PlaySound( SoundEvent sound )
 		{
-			foreach (DVDPlayer dvdp in Entity.All.OfType<DVDPlayer>())
+			foreach ( DVDPlayer dvdp in Entity.All.OfType<DVDPlayer>() )
 			{
 				if ( dvdp != null )
 					dvdp.PlaySound( sound.Name );
@@ -114,12 +114,12 @@ namespace DVD
 
 		private bool TouchSides()
 		{
-			return (x <= 0) || (x >= 1920f);
+			return ((int) x <= 0) || ((int) x >= 1920f);
 		}
 
 		private bool TouchCeilFloor()
 		{
-			return (y <= 0) || (y >= 1080f);
+			return ((int) y <= 0) || ((int) y >= 1080f);
 		}
 	}
 }
