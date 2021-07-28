@@ -14,9 +14,9 @@ namespace DVD
 		Random random;
 		// X & Y in [0; 1]
 		//[Net]
-		private float x;
+		private float x = 1;
 		//[Net]
-		private float y;
+		private float y = 1;
 
 		float xAcc, yAcc = 0.0f;
 
@@ -26,11 +26,11 @@ namespace DVD
 		float yDir;
 		float speed;
 		bool hyped = false;
-		Vector2 cornerOfInterest = new( .0f, .0f );
+		Vector2 cornerOfInterest = new( 0, 0 );
 
-		static SoundEvent AlmostSound = new( "sounds/close.vsnd" );
-		static SoundEvent DamnSound = new( "sounds/damn.vsnd" );
-		static SoundEvent CornerSound = new( "sounds/yooouuu.vsnd" );
+		private static SoundEvent AlmostSound = new( "sounds/close.vsnd" );
+		private static SoundEvent DamnSound = new( "sounds/damn.vsnd" );
+		private static SoundEvent CornerSound = new( "sounds/yooouuu.vsnd" );
 
 		public DVDEntity()
 		{
@@ -59,7 +59,7 @@ namespace DVD
 				if ( Vector3.DistanceBetween( new Vector3( cornerOfInterest, 0 ), new Vector3( x, y, 0 ) ) < 300.0f )
 				{
 					hyped = true;
-					PlaySound( AlmostSound );
+					PlayNOSound( AlmostSound.Name );
 				}
 			}
 
@@ -73,10 +73,10 @@ namespace DVD
 				if ( tcf )
 					yDir *= -1;
 				if ( ts && tcf )
-					PlaySound( CornerSound );
+					PlayNOSound( CornerSound.Name );
 				else if ( hyped )
 				{
-					PlaySound( DamnSound );
+					PlayNOSound( DamnSound.Name );
 				}
 				hyped = false;
 
@@ -84,12 +84,13 @@ namespace DVD
 			}
 		}
 
-		private void PlaySound( SoundEvent sound )
+		private void PlayNOSound( string sound )
 		{
-			foreach ( DVDPlayer dvdp in Entity.All.OfType<DVDPlayer>() )
+			foreach ( DVDPlayer p in Entity.All.OfType<DVDPlayer>())
 			{
-				if ( dvdp != null )
-					dvdp.PlaySound( sound.Name );
+				Log.Info( $"Playing sound {sound} for player №{p.NetworkIdent}" );
+				if (p != null)
+					p.PlayNOSound( sound );
 			}
 		}
 
@@ -109,17 +110,17 @@ namespace DVD
 		}
 		private void SetCornerOfInterest()
 		{
-			cornerOfInterest = new Vector2( xDir < 0 ? .0f : 1920f, yDir < 0 ? .0f : 1080f );
+			cornerOfInterest = new Vector2( xDir < 0 ? 0 : 1920, yDir < 0 ? 0 : 1080 );
 		}
 
 		private bool TouchSides()
 		{
-			return ((int) x <= 0) || ((int) x >= 1920f);
+			return ((int)x <= 0) || ((int)x >= 1920);
 		}
 
 		private bool TouchCeilFloor()
 		{
-			return ((int) y <= 0) || ((int) y >= 1080f);
+			return ((int)y <= 0) || ((int)y >= 1080);
 		}
 	}
 }

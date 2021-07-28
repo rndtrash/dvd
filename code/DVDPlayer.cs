@@ -4,6 +4,8 @@ namespace DVD
 {
 	public partial class DVDPlayer : Player
 	{
+		private Sound currentSound;
+
 		public override void Respawn()
 		{
 			//SetModel( "models/citizen/citizen.vmdl" );
@@ -50,6 +52,12 @@ namespace DVD
 			base.OnKilled();
 
 			EnableDrawing = false;
+		}
+
+		public void PlayNOSound(string sound)
+		{
+			currentSound.Stop();
+			currentSound = PlaySound( sound );
 		}
 	}
 }

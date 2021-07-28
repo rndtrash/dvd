@@ -17,26 +17,18 @@ namespace DVD
 	/// Your game needs to be registered (using [Library] here) with the same name 
 	/// as your game addon. If it isn't then we won't be able to find it.
 	/// </summary>
-	[Library( "dvd" )]
 	public partial class DVDGame : Sandbox.Game
 	{
 		public DVDGame()
 		{
 			if ( IsServer )
 			{
-				Log.Info( "My Gamemode Has Created Serverside!" );
-
 				new DVDEntity();
 				// Create a HUD entity. This entity is globally networked
 				// and when it is created clientside it creates the actual
 				// UI panels. You don't have to create your HUD via an entity,
 				// this just feels like a nice neat way to do it.
 				new DVDHudEntity();
-			}
-
-			if ( IsClient )
-			{
-				Log.Info( "My Gamemode Has Created Clientside!" );
 			}
 		}
 
