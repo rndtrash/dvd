@@ -1,4 +1,13 @@
 {
-	"sharedassets": "*.*",
-	"ident": "tesa.dvd"
+  "SharedAssets": "*.*",
+  "Title": "DVD",
+  "Type": "game",
+  "Org": "tesa",
+  "Ident": "dvd",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "HasCode": true,
+  "CodePath": "code",
+  "RootNamespace": "DVD"
 }
