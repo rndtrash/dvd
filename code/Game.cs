@@ -1,9 +1,5 @@
-﻿
-using Sandbox;
+﻿using Sandbox;
 
-//
-// You don't need to put things in a namespace, but it doesn't hurt.
-//
 namespace DVD
 {
 
@@ -17,9 +13,11 @@ namespace DVD
 	/// Your game needs to be registered (using [Library] here) with the same name 
 	/// as your game addon. If it isn't then we won't be able to find it.
 	/// </summary>
-	public partial class DVDGame : Sandbox.Game
+	public partial class Game : Sandbox.Game
 	{
-		public DVDGame()
+		public static Game Instance { get; internal set; }
+
+		public Game()
 		{
 			if ( IsServer )
 			{
@@ -28,26 +26,38 @@ namespace DVD
 				// and when it is created clientside it creates the actual
 				// UI panels. You don't have to create your HUD via an entity,
 				// this just feels like a nice neat way to do it.
-				new DVDHudEntity();
+				new HudEntity();
+
+				GameServices.StartGame();
 			}
+
+			Instance = this;
 		}
 
-		/// <summary>
-		/// A client has joined the server. Make them a pawn to play with
-		/// </summary>
 		public override void ClientJoined( Client client )
 		{
 			base.ClientJoined( client );
+		}
 
-			var player = new DVDPlayer();
-			client.Pawn = player;
+		public override void Shutdown()
+		{
+			base.Shutdown();
 
-			player.Respawn();
+			GameServices.EndGame();
 		}
 
 		public override void Simulate( Client cl )
 		{
 			base.Simulate( cl );
+		}
+
+		public static void AddScore()
+		{
+			foreach ( var cl in Client.All )
+			{
+				cl.AddInt( "corners" );
+				GameServices.RecordScore( cl.PlayerId, cl.IsBot, GameplayResult.None, cl.GetInt( "corners" ) );
+			}
 		}
 	}
 

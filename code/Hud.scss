@@ -5,18 +5,12 @@ RootPanel {
     margin: 0;
     padding: 0;
     pointer-events: all;
-}
-
-.dvdcont
-{
-    background-color: rgba(0,0,0,0);
-    width: 100%;
-    margin-right: 510px;
-    margin-bottom: 305px;
+    padding-right: 510px;
+    padding-bottom: 305px;
 }
 
 DVDPanel {
-    transition: left 0.01s ease-in, top 0.01s ease-in;
+    transition: left 0.01s linear, top 0.01s linear;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -29,12 +23,9 @@ DVDPanel {
     padding: 0;
 }
 
-DVDTintPanel {
-    position: relative;
-    top: 0;
-    left: 0;
-    background-color: #be00ff;
-    mix-blend-mode: multiply;
-    width: 510px;
-    height: 305px;
+.scoreboard {
+    .corners {
+        width: 90px;
+        text-align: right;
+    }
 }
