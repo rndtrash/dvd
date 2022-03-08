@@ -27,8 +27,6 @@ namespace DVD
 				// UI panels. You don't have to create your HUD via an entity,
 				// this just feels like a nice neat way to do it.
 				new HudEntity();
-
-				GameServices.StartGame();
 			}
 
 			Instance = this;
@@ -37,13 +35,6 @@ namespace DVD
 		public override void ClientJoined( Client client )
 		{
 			base.ClientJoined( client );
-		}
-
-		public override void Shutdown()
-		{
-			base.Shutdown();
-
-			GameServices.EndGame();
 		}
 
 		public override void Simulate( Client cl )
@@ -56,7 +47,7 @@ namespace DVD
 			foreach ( var cl in Client.All )
 			{
 				cl.AddInt( "corners" );
-				GameServices.RecordScore( cl.PlayerId, cl.IsBot, GameplayResult.None, cl.GetInt( "corners" ) );
+				GameServices.SubmitScore( cl.PlayerId, 1 );
 			}
 		}
 	}

@@ -30,8 +30,10 @@ namespace DVD
 				AddClass( "entry" );
 
 				CornerHitsSeen = Add.Label( "0", "corners" );
-				Kills.Delete();
-				Deaths.Delete();
+				Kills.Delete( true );
+				Deaths.Delete( true );
+				Ping.Delete( true );
+				Ping = Add.Label( "", "ping" );
 			}
 
 			public override void UpdateData()
@@ -49,7 +51,7 @@ namespace DVD
 			{
 				//RootPanel.SetTemplate( "/minimalhud.html" );
 				RootPanel.StyleSheet.Load( "/Hud.scss" );
-				
+
 				RootPanel.AddChild<DVDPanel>();
 				RootPanel.AddChild<ChatBox>();
 				RootPanel.AddChild<DVDScoreboard<DVDScoreboardEntry>>();
