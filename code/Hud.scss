@@ -3,17 +3,12 @@ RootPanel {
     height: 100%;
     background-color: black;
     margin: 0;
-    padding: 0;
     pointer-events: all;
-    padding-right: 510px;
-    padding-bottom: 305px;
+    padding: 0 510px 305px 0;
 }
 
 DVDPanel {
     transition: left 0.01s linear, top 0.01s linear;
-    position: absolute;
-    left: 0px;
-    top: 0px;
     background-image: url(ui/dvd.png);
     background-repeat: no-repeat;
     background-size: 510px 305px;

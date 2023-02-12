@@ -3,13 +3,39 @@
   "Type": "game",
   "Org": "tesa",
   "Ident": "dvd",
+  "Tags": "meme dvd",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [
-    "/ui/*"
-  ],
+  "ResourcePaths": [],
   "HasCode": true,
   "CodePath": "code",
-  "RootNamespace": "DVD"
+  "Metadata": {
+    "MapList": [],
+    "PerMapRanking": false,
+    "LeaderboardType": "Descending",
+    "RankType": "Increment",
+    "MapSelect": "Empty",
+    "GameNetworkType": "Multiplayer",
+    "MaxPlayers": 64,
+    "MinPlayers": 1,
+    "Collision": {
+      "Defaults": {},
+      "Pairs": []
+    },
+    "Summary": "Watch the bouncing DVD logo with your friends!",
+    "Description": "Watch the bouncing DVD logo with your friends!\r\nThis gamemode has chat and the position of bouncing logo is the same for every player!",
+    "Public": true,
+    "CsProjName": "",
+    "ControlModes": {
+      "Keyboard": true,
+      "Gamepad": true
+    },
+    "Compiler": {
+      "RootNamespace": "DVD",
+      "DefineConstants": "SANDBOX;ADDON;DEBUG",
+      "NoWarn": "1701;1702;1591;"
+    },
+    "ReplaceTags": "meme dvd coop"
+  }
 }

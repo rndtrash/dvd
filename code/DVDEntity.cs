@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using System;
+using Sandbox.Diagnostics;
 
 namespace DVD
 {
@@ -12,7 +13,6 @@ namespace DVD
 		[Net] public float xConverted { get; set; }
 		[Net] public float yConverted { get; set; }
 		[Net] public int currentColor { get; set; }
-		[Net] public int cornerHits { get; set; }
 
 		public Sound currentSound { get; internal set; }
 
@@ -49,9 +49,6 @@ namespace DVD
 		[Event.Tick.Server]
 		public void Tick()
 		{
-			if ( !IsServer )
-				return;
-
 			X = MathX.Clamp( X + xDir * speed * Time.Delta, 0, 1920 );
 			Y = MathX.Clamp( Y + yDir * speed * Time.Delta, 0, 1080 );
 
@@ -78,7 +75,6 @@ namespace DVD
 					yDir *= -1;
 				if ( ts && tcf )
 				{
-					cornerHits++;
 					Game.AddScore();
 					PlayScreenSound( To.Everyone, "yooouuu" );
 				}

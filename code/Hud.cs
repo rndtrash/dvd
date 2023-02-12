@@ -23,7 +23,7 @@ namespace DVD
 
 		public class DVDScoreboardEntry : ScoreboardEntry
 		{
-			public Label CornerHitsSeen;
+			Label CornerHitsSeen;
 
 			public DVDScoreboardEntry()
 			{
@@ -41,21 +41,23 @@ namespace DVD
 				PlayerName.Text = Client.Name;
 				CornerHitsSeen.Text = Client.GetInt( "corners" ).ToString();
 				Ping.Text = Client.Ping.ToString();
-				SetClass( "me", Client == Local.Client );
+				SetClass( "me", Client == Sandbox.Game.LocalClient );
 			}
 		}
 
 		public HudEntity()
 		{
-			if ( IsClient )
+			if ( !Sandbox.Game.IsClient )
 			{
-				//RootPanel.SetTemplate( "/minimalhud.html" );
-				RootPanel.StyleSheet.Load( "/Hud.scss" );
-
-				RootPanel.AddChild<DVDPanel>();
-				RootPanel.AddChild<ChatBox>();
-				RootPanel.AddChild<DVDScoreboard<DVDScoreboardEntry>>();
+				return;
 			}
+
+			//RootPanel.SetTemplate( "/minimalhud.html" );
+			RootPanel.StyleSheet.Load( "/Hud.scss" );
+
+			RootPanel.AddChild<DVDPanel>();
+			RootPanel.AddChild<ChatBox>();
+			RootPanel.AddChild<DVDScoreboard<DVDScoreboardEntry>>();
 		}
 	}
 

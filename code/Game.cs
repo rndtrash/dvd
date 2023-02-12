@@ -1,54 +1,50 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using Sandbox;
 
 namespace DVD
 {
-
-	/// <summary>
-	/// This is your game class. This is an entity that is created serverside when
-	/// the game starts, and is replicated to the client. 
-	/// 
-	/// You can use this to create things like HUDs and declare which player class
-	/// to use for spawned players.
-	/// 
-	/// Your game needs to be registered (using [Library] here) with the same name 
-	/// as your game addon. If it isn't then we won't be able to find it.
-	/// </summary>
-	public partial class Game : Sandbox.Game
+	public class Game : Sandbox.GameManager
 	{
 		public static Game Instance { get; internal set; }
 
+		private IList<IClient> _clients = new List<IClient>();
+
 		public Game()
 		{
-			if ( IsServer )
+			if ( Sandbox.Game.IsServer )
 			{
-				new DVDEntity();
-				// Create a HUD entity. This entity is globally networked
-				// and when it is created clientside it creates the actual
-				// UI panels. You don't have to create your HUD via an entity,
-				// this just feels like a nice neat way to do it.
-				new HudEntity();
+				_ = new DVDEntity();
+				_ = new HudEntity();
 			}
 
 			Instance = this;
 		}
 
-		public override void ClientJoined( Client client )
+		public override void ClientJoined( IClient cl )
 		{
-			base.ClientJoined( client );
+			base.ClientJoined( cl );
+
+			_clients.Add( cl );
 		}
 
-		public override void Simulate( Client cl )
+		public override void ClientDisconnect( IClient cl, NetworkDisconnectionReason reason )
 		{
-			base.Simulate( cl );
+			base.ClientDisconnect( cl, reason );
+
+			_clients.Remove( cl );
 		}
 
 		public static void AddScore()
 		{
-			foreach ( var cl in Client.All )
+			foreach ( var cl in Instance._clients )
 			{
+				if ( !cl.IsValid )
+					continue;
+				
 				cl.AddInt( "corners" );
-				GameServices.SubmitScore( cl.PlayerId, 1 );
 			}
+			Log.Error( "TODO: leaderboards" );
 		}
 	}
 
