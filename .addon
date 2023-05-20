@@ -7,9 +7,13 @@
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
-  "ResourcePaths": [],
+  "ResourcePaths": [
+    "/ui/dvd.png"
+  ],
   "HasCode": true,
   "CodePath": "code",
+  "PackageReferences": [],
+  "EditorReferences": null,
   "Metadata": {
     "MapList": [],
     "PerMapRanking": false,
@@ -36,6 +40,7 @@
       "DefineConstants": "SANDBOX;ADDON;DEBUG",
       "NoWarn": "1701;1702;1591;"
     },
-    "ReplaceTags": "meme dvd coop"
+    "ReplaceTags": "meme dvd coop",
+    "HttpAllowList": null
   }
 }
